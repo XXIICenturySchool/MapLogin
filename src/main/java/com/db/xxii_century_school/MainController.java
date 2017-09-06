@@ -1,8 +1,11 @@
 package com.db.xxii_century_school;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
     @Autowired
     private  TeacherLoginDao teacherLoginDao;
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @RequestMapping(path = "/work")
     public  boolean working(){
@@ -25,6 +31,11 @@ public class MainController {
     public Teacher addRandomTeacher(){
         Teacher teacher = new Teacher(21, "meow@woof.com");
         return teacherLoginDao.save(teacher);
+    }
+
+    @RequestMapping(path = "/services")
+    public List<String> discover(){
+        return discoveryClient.getServices();
     }
 }
 

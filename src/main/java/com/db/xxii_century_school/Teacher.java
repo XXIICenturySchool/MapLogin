@@ -7,10 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.GenerationType;
-
 import java.util.List;
 
 @Data
@@ -18,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Teacher {
     @Id
-    @GeneratedValue
     private Integer id;
     private String name;
     private String mails;
