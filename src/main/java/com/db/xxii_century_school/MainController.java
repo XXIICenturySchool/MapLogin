@@ -27,11 +27,6 @@ public class MainController {
         return  123;
     }
 
-    @RequestMapping(path = "/new2")
-    public Teacher addRandomTeacher(){
-        Teacher teacher = new Teacher(21, "meow@woof.com");
-        return teacherLoginDao.save(teacher);
-    }
 
     @RequestMapping(path = "/services")
     public List<String> discover(){

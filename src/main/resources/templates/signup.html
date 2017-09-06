@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head id="Head1">
+    <title>Sign Up</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+</head>
+<body>
+<div id="status">Please fill your name and emails</div>
+<form id="form1" runat="server">
+    <p th:text="'Hello, ' + ${id} + '!'"/>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" id="name"/></td>
+        </tr>
+        <tr>
+            <td>Id:</td>
+            <td><input type="number" id="id"/></td>
+        </tr>
+        <tr>
+            <td>Mails:</td>
+            <td><input type="text" id="mails"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="btnSubmit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+    <label id="lblmsg" style="font-weight:bold; color:Red"/>
+</form>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(function () {
+        $('#btnSubmit').click(function () {
+            var name = $('#name').val();
+            var mails = $('#mails').val();
+            var id = 0;
+
+
+            if (name != '' && mails != '') {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://localhost:8080/cont/getId",
+                    dataType: "text",
+                    success: function (id) {
+                        alert("Your id is " + id);
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "http://localhost:8080/teachers/",
+                            data: "{\"id\":" + id + ",\"name\":\"" + name + "\",\"mails\":\"" + mails + "\"}",
+                            dataType: "json",
+                            success: function (data) {
+                                $("#form1").hide().html(output).slideDown();
+                                //$("#status").add('You successfully signed up. Your id is ' + id);
+                                alert(('You successfully signed up. Your id is ' + id));
+                            },
+                            error: function (result) {
+                                alert("Error");
+                            }
+                        });
+                    },
+                    error: function (result) {
+                        alert("Error get");
+                    }
+                });
+            }
+            else {
+                alert('Please enter all the fields')
+                return false;
+            }
+        });
+    });
+    /*]]>*/
+</script>
+</body>
+</html>
