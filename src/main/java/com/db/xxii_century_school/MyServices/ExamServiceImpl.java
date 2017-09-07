@@ -16,4 +16,9 @@ public class ExamServiceImpl implements ExamService {
     public int saveExam(Exam exam) {
         return examDao.saveExam(exam);
     }
+
+    @Override
+    public Exam getExam(int examId, int teacherId) {
+        return examDao.findByIdAndTeacherId(examId, teacherId);
+    }
 }

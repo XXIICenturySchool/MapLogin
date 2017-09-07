@@ -12,10 +12,7 @@
             <td>Name:</td>
             <td><input type="text" id="name"/></td>
         </tr>
-        <tr>
-            <td>Id:</td>
-            <td><input type="number" id="id"/></td>
-        </tr>
+
         <tr>
             <td>Mails:</td>
             <td><input type="text" id="mails"/></td>
@@ -31,6 +28,9 @@
     <label id="lblmsg" style="font-weight:bold; color:Red"/>
 </form>
 
+<br>
+<br>
+<p id="resultid"></p>
 <script type="text/javascript">
     /*<![CDATA[*/
     $(function () {
@@ -44,25 +44,12 @@
                 $.ajax({
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
-                    url: "http://localhost:8080/cont/getId",
-                    dataType: "text",
-                    success: function (id) {
-                        alert("Your id is " + id);
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            url: "http://localhost:8080/teachers/",
-                            data: "{\"id\":" + id + ",\"name\":\"" + name + "\",\"mails\":\"" + mails + "\"}",
-                            dataType: "json",
-                            success: function (data) {
-                                $("#form1").hide().html(output).slideDown();
-                                //$("#status").add('You successfully signed up. Your id is ' + id);
-                                alert(('You successfully signed up. Your id is ' + id));
-                            },
-                            error: function (result) {
-                                alert("Error");
-                            }
-                        });
+                    url: "http://localhost:8080/cont/teachers/saveTeacher",
+                    data: "{\"name\":\"" + name + "\",\"mails\":\"" + mails + "\"}",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#form1").hide(),
+                        $("#resultid").text=data.text;
                     },
                     error: function (result) {
                         alert("Error get");
