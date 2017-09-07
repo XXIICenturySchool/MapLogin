@@ -1,4 +1,4 @@
-package com.db.xxii_century_school.Services;
+package com.db.xxii_century_school.MyServices;
 
 import com.db.xxii_century_school.Dao.ExamDao;
 import com.db.xxii_century_school.Entities.Exam;

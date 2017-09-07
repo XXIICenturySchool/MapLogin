@@ -1,7 +1,7 @@
 package com.db.xxii_century_school;
 
 import com.db.xxii_century_school.Entities.Teacher;
-import com.db.xxii_century_school.Services.TeacherService;
+import com.db.xxii_century_school.MyServices.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,4 +17,6 @@ public class TeacherController {
     public int saveTeacher(@RequestBody Teacher teacher){
         return teacherService.saveTeacher(teacher);
     }
+
+
 }
