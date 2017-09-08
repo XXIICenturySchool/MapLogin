@@ -1,5 +1,6 @@
 package com.db.xxii_century_school;
 
+import com.db.xxii_century_school.Dao.TeacherDao;
 import com.db.xxii_century_school.Entities.Exam;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/cont")
 public class MainController {
     @Autowired
-    private TeacherLoginDao teacherLoginDao;
+    private TeacherDao teacherLoginDao;
 
     @Autowired
     private DiscoveryClient discoveryClient;
